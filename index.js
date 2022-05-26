@@ -6,15 +6,15 @@
 // paper beats rock;
 "use strict";
 
-// console.log(round("rock"));
-// function playRoundvalue() {
-//   let input = prompt("Please Enter either rock, paper, or scissor");
-//   return round(input);
-// }
-// console.log(playRoundvalue());
+function playgame() {
+  return round();
+}
+// call this function if you would like to play;
+// console.log(playgame());
 
-// computer function
+// computer value function
 function computerPlay1(computerPlay) {
+  // first randomize the computer play
   const array = ["rock", "paper", "scissor"];
   computerPlay = array[Math.floor(Math.random() * array.length)];
   return computerPlay;
@@ -22,11 +22,9 @@ function computerPlay1(computerPlay) {
 
 // game functionality
 function game(PlayerSelection, computerPlay) {
-  // first randomize the computer play
-  // playerSelected.toLowerCase()
   computerPlay = computerPlay1();
 
-  // conditions
+  // conditions for game
   if (
     PlayerSelection === "rock" ||
     PlayerSelection === "Rock" ||
@@ -47,9 +45,9 @@ function game(PlayerSelection, computerPlay) {
     if (computerPlay === "scissor") {
       return `it's a tie because ${computerPlay} equals to ${PlayerSelection} , so let's play again`;
     } else if (computerPlay === "paper") {
-      return `Computer is the loser because ${computerPlay} can't beat ${PlayerSelection} `;
+      return `Player is the winner because ${computerPlay} can't beat ${PlayerSelection} `;
     } else if (computerPlay === "rock") {
-      return `Player is the loser because ${PlayerSelection} can't beat ${computerPlay}`;
+      return `Computer is the winner because ${PlayerSelection} can't beat ${computerPlay}`;
     }
   } else if (
     PlayerSelection === "paper" ||
@@ -66,16 +64,18 @@ function game(PlayerSelection, computerPlay) {
   }
 }
 // =========================================================
-// round function
+// round function to keep rack ofwho wins each round
 function round() {
   let computerpoints = 0;
   let Playerpoints = 0;
   let tie = 0;
 
-  // calling the  game
+  // calling the game so player can pick a move
   let logic = game(prompt("Please Enter either rock, paper, or scissor"));
+  // number of rounds
   for (let i = 1; i < 6; i++) {
     console.log(logic);
+    // to check wether player or computer wins
     if (logic.includes("Player is the winner")) {
       Playerpoints++;
 
@@ -90,15 +90,14 @@ function round() {
       tie++;
       console.log(tie);
     }
-    /////
+    // stop calling the function for more than five times
     if (i !== 5)
       logic = game(prompt("Please Enter either rock, paper, or scissor"));
   }
-
+  // compare points
   return computerpoints > Playerpoints
     ? `Computer wins this round: ${computerpoints} out 5`
     : computerpoints < Playerpoints
     ? `Player wins this round: ${Playerpoints} out 5`
     : `It's a tie of ${tie} rounds, nobody wins`;
 }
-console.log(round());
