@@ -14,7 +14,7 @@ function playgame() {
 
 // computer value function
 function computerPlay1(computerPlay) {
-  // first randomize the computer play
+  // randomize the computer play
   const array = ["rock", "paper", "scissor"];
   computerPlay = array[Math.floor(Math.random() * array.length)];
   return computerPlay;
@@ -63,8 +63,8 @@ function game(PlayerSelection, computerPlay) {
     }
   }
 }
-// =========================================================
-// round function to keep rack ofwho wins each round
+// ============================================================================================================
+// round function to keep track of who wins each round
 function round() {
   let computerpoints = 0;
   let Playerpoints = 0;
@@ -83,7 +83,6 @@ function round() {
     }
     if (logic.includes("Computer is the winner")) {
       computerpoints++;
-
       console.log(computerpoints);
     }
     if (logic.includes("equals")) {
