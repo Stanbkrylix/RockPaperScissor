@@ -1,15 +1,10 @@
-// user vs computer
-// computer needs to be a random
-// return winner
-// rock beats scissor
-// scissor beats paper
-// paper beats rock;
 "use strict";
 
+// call this function if you would like to play;
 function playgame() {
   return round();
 }
-// call this function if you would like to play;
+
 // console.log(playgame());
 
 // computer value function
@@ -18,6 +13,36 @@ function computerPlay1(computerPlay) {
   const array = ["rock", "paper", "scissor"];
   computerPlay = array[Math.floor(Math.random() * array.length)];
   return computerPlay;
+}
+// functionality for when player choose a rock value
+function rock(computerPlay, PlayerSelection) {
+  if (computerPlay === "rock") {
+    return `it's a tie because ${computerPlay} equals to ${PlayerSelection} , so let's play again`;
+  } else if (computerPlay === "paper") {
+    return `Computer is the winner because ${computerPlay} beats ${PlayerSelection} `;
+  } else if (computerPlay === "scissor") {
+    return `Player is the winner the because ${PlayerSelection} beats ${computerPlay}`;
+  }
+}
+// functionality for when player choose a scissor value
+function scissor(computerPlay, PlayerSelection) {
+  if (computerPlay === "scissor") {
+    return `it's a tie because ${computerPlay} equals to ${PlayerSelection} , so let's play again`;
+  } else if (computerPlay === "paper") {
+    return `Player is the winner because ${computerPlay} can't beat ${PlayerSelection} `;
+  } else if (computerPlay === "rock") {
+    return `Computer is the winner because ${PlayerSelection} can't beat ${computerPlay}`;
+  }
+}
+// functionality for when player choose a paper value
+function paper(computerPlay, PlayerSelection) {
+  if (computerPlay === "paper") {
+    return `it's a tie because ${computerPlay} equals to ${PlayerSelection} , so let's play again`;
+  } else if (computerPlay === "scissor") {
+    return `Computer is the winner because ${computerPlay} beats ${PlayerSelection} `;
+  } else if (computerPlay === "rock") {
+    return `Player is the winner the because ${PlayerSelection} beats ${computerPlay}`;
+  }
 }
 
 // game functionality
@@ -30,37 +55,22 @@ function game(PlayerSelection, computerPlay) {
     PlayerSelection === "Rock" ||
     PlayerSelection === "ROCK"
   ) {
-    if (computerPlay === "rock") {
-      return `it's a tie because ${computerPlay} equals to ${PlayerSelection} , so let's play again`;
-    } else if (computerPlay === "paper") {
-      return `Computer is the winner because ${computerPlay} beats ${PlayerSelection} `;
-    } else if (computerPlay === "scissor") {
-      return `Player is the winner the because ${PlayerSelection} beats ${computerPlay}`;
-    }
+    // return rock functionality
+    return rock(computerPlay, PlayerSelection);
   } else if (
     PlayerSelection === "scissor" ||
     PlayerSelection === "Scissor" ||
     PlayerSelection === "SCISSOR"
   ) {
-    if (computerPlay === "scissor") {
-      return `it's a tie because ${computerPlay} equals to ${PlayerSelection} , so let's play again`;
-    } else if (computerPlay === "paper") {
-      return `Player is the winner because ${computerPlay} can't beat ${PlayerSelection} `;
-    } else if (computerPlay === "rock") {
-      return `Computer is the winner because ${PlayerSelection} can't beat ${computerPlay}`;
-    }
+    // return scissor functionality
+    return scissor(computerPlay, PlayerSelection);
   } else if (
     PlayerSelection === "paper" ||
     PlayerSelection === "Paper" ||
     PlayerSelection === "PAPER"
   ) {
-    if (computerPlay === "paper") {
-      return `it's a tie because ${computerPlay} equals to ${PlayerSelection} , so let's play again`;
-    } else if (computerPlay === "scissor") {
-      return `Computer is the winner because ${computerPlay} beats ${PlayerSelection} `;
-    } else if (computerPlay === "rock") {
-      return `Player is the winner the because ${PlayerSelection} beats ${computerPlay}`;
-    }
+    // return paper functionality
+    return paper(computerPlay, PlayerSelection);
   }
 }
 // ============================================================================================================
@@ -78,7 +88,6 @@ function round() {
     // to check wether player or computer wins
     if (logic.includes("Player is the winner")) {
       Playerpoints++;
-
       console.log(Playerpoints);
     }
     if (logic.includes("Computer is the winner")) {
@@ -98,5 +107,5 @@ function round() {
     ? `Computer wins this round: ${computerpoints} out 5`
     : computerpoints < Playerpoints
     ? `Player wins this round: ${Playerpoints} out 5`
-    : `It's a tie of ${tie} rounds, nobody wins`;
+    : `It's a tie, both players won ${Playerpoints} rounds each, nobody wins`;
 }
